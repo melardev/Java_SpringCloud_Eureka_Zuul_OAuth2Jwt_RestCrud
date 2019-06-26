@@ -1,0 +1,50 @@
+app:
+  security:
+    key_file_path: public.pem
+    # This is here only to show how to @Value directly to a Resource Object
+    key_file_path_as_resource: classpath:public.pem
+
+spring:
+  application:
+    name: todo-service
+  datasource:
+    username: user
+    password: password
+    # url: jdbc:h2:file:./database/h2.db;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
+
+  h2:
+    console:
+      path: /h2-console
+      settings:
+        trace: true
+      enabled: true
+  jpa:
+    show-sql: true
+
+
+# Servlet
+server:
+  port: 8081
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+
+logging:
+  level:
+    root: warn
+    com.melardev: trace
+    org.springframework.web: debug
+
